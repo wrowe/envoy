@@ -146,7 +146,7 @@ envoy_cc_benchmark_binary(
 )
 
 envoy_benchmark_test(
-    name = "codes_speed_test_benchmark_test",
+    name = "codes_benchmark_test",
     benchmark_binary = "codes_speed_test",
 )
 
@@ -293,7 +293,7 @@ envoy_cc_benchmark_binary(
 )
 
 envoy_benchmark_test(
-    name = "header_map_impl_speed_test_benchmark_test",
+    name = "header_map_impl_benchmark_test",
     benchmark_binary = "header_map_impl_speed_test",
 )
 

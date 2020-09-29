@@ -135,7 +135,7 @@ envoy_extension_cc_benchmark_binary(
 )
 
 envoy_extension_benchmark_test(
-    name = "command_lookup_speed_test_benchmark_test",
+    name = "command_lookup_benchmark_test",
     benchmark_binary = "command_lookup_speed_test",
     extension_name = "envoy.filters.network.redis_proxy",
 )
@@ -185,7 +185,7 @@ envoy_extension_cc_benchmark_binary(
 )
 
 envoy_extension_benchmark_test(
-    name = "command_split_speed_test_benchmark_test",
+    name = "command_split_benchmark_test",
     benchmark_binary = "command_split_speed_test",
     extension_name = "envoy.filters.network.redis_proxy",
 )
