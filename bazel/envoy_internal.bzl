@@ -43,6 +43,9 @@ def envoy_copts(repository, test = False):
     ]
 
     return select({
+               repository + "//bazel:clang_build": ["-Wno-macro-redefined"],
+               "//conditions:default": [],
+           }) + select({
                repository + "//bazel:windows_x86_64": msvc_options,
                "//conditions:default": posix_options,
            }) + select({

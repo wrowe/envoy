@@ -325,12 +325,6 @@ build:windows --define wasm=disabled
 build:windows --define manual_stamp=manual_stamp
 build:windows --cxxopt="/std:c++17"
 
-# TODO(wrowe,sunjayBhatia): Resolve bugs upstream in curl and rules_foreign_cc
-# See issue https://github.com/bazelbuild/rules_foreign_cc/issues/301
-build:windows --copt="-DCARES_STATICLIB"
-build:windows --copt="-DNGHTTP2_STATICLIB"
-build:windows --copt="-DCURL_STATICLIB"
-
 # Override any clang preference if building msvc-cl
 # Drop the determinism feature (-DDATE etc are a no-op in msvc-cl)
 build:msvc-cl --action_env=USE_CLANG_CL=""
@@ -341,11 +335,6 @@ build:msvc-cl --features=-determinism
 build:clang-cl --action_env=USE_CLANG_CL=1
 build:clang-cl --define clang_cl=1
 
-# Required to work around Windows clang-cl build defects
-# Ignore conflicting definitions of _WIN32_WINNT
-# Override determinism flags (DATE etc) is valid on clang-cl compiler
-build:clang-cl --copt="-Wno-macro-redefined"
-build:clang-cl --copt="-Wno-builtin-macro-redefined"
 # Workaround problematic missing override declarations of mocks
 # TODO: resolve this class of problematic mocks, e.g.
 # ./test/mocks/http/stream.h(16,21): error: 'addCallbacks'

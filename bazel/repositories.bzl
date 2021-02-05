@@ -379,11 +379,6 @@ def _com_github_nghttp2_nghttp2():
     external_http_archive(
         name = "com_github_nghttp2_nghttp2",
         build_file_content = BUILD_ALL_CONTENT,
-        patch_args = ["-p1"],
-        # This patch cannot be picked up due to ABI rules. Discussion at;
-        # https://github.com/nghttp2/nghttp2/pull/1395
-        # https://github.com/envoyproxy/envoy/pull/8572#discussion_r334067786
-        patches = ["@envoy//bazel/foreign_cc:nghttp2.patch"],
     )
     native.bind(
         name = "nghttp2",

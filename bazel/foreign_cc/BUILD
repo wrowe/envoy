@@ -302,10 +302,14 @@ envoy_cmake_external(
         "ENABLE_STATIC_LIB": "on",
         "CMAKE_INSTALL_LIBDIR": "lib",
         "CMAKE_CXX_COMPILER_FORCED": "on",
+        "CMAKE_C_FLAGS": "-Dssize_t=ptrdiff_t",
     },
     cmake_files_dir = "$BUILD_TMPDIR/lib/CMakeFiles",
     debug_cache_entries = {"ENABLE_DEBUG": "on"},
-    defines = ["NGHTTP2_STATICLIB"],
+    defines = ["NGHTTP2_STATICLIB"] + select({
+        "//bazel:windows_x86_64": ["ssize_t=ptrdiff_t"],
+        "//conditions:default": [],
+    }),
     lib_source = "@com_github_nghttp2_nghttp2//:all",
     static_libraries = select({
         "//bazel:windows_x86_64": ["nghttp2.lib"],
